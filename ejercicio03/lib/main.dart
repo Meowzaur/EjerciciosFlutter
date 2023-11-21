@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                             width: 400,
                             height: 400,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 57, 67, 137),
+                              color: const Color.fromARGB(255, 57, 67, 137),
                               borderRadius: BorderRadius.circular(10.0),
                               border: Border.all(
                                 color: Colors.black, // Color del borde

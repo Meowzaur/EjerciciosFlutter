@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class Contenedor extends StatelessWidget {
@@ -8,18 +10,19 @@ class Contenedor extends StatelessWidget {
   final margen;
   final alineacion;
 
-  Contenedor(this.color, this.alto, this.ancho, this.texto, this.margen,
-      this.alineacion);
+  const Contenedor(this.color, this.alto, this.ancho, this.texto, this.margen,
+      this.alineacion,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: this.color,
-      width: this.ancho,
-      height: this.alto,
-      padding: this.margen,
+      color: color,
+      width: ancho,
+      height: alto,
+      padding: margen,
       alignment: Alignment.bottomLeft,
-      child: Text(this.texto),
+      child: Text(texto),
     );
   }
 }

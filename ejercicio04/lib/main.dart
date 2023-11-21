@@ -15,15 +15,15 @@ class MyApp extends StatelessWidget {
         title: 'ejemplo de iconos',
         home: Scaffold(
             appBar: AppBar(
-              title: Center(
+              title: const Center(
                 child: Text('Ejemplo de Container'),
               ),
             ),
-            body: Row(children: <Widget>[
+            body: const Row(children: <Widget>[
               Contenedor(
                 Colors.red,
-                120.0,
-                120.0,
+                180.0,
+                180.0,
                 'azul',
                 EdgeInsets.all(16.0),
                 Alignment.center,
@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
               ),
               Contenedor(
                 Colors.green,
-                110.0,
-                110.0,
+                140.0,
+                140.0,
                 'verde',
                 EdgeInsets.only(left: 8.0, top: 16.0, right: 8.0, bottom: 16.0),
                 Alignment.bottomRight,
