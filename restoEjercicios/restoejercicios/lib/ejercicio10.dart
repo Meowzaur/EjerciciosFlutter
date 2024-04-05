@@ -1,15 +1,15 @@
 // 10º En el ejercicio resuelto en el punto 5.6 (páginas 27-32) realiza:
 // 1. Una mejora en el aspecto.
-// 2. Inserta un color nuevo a las posibilidades de los colores que se presentan
-// en pantalla.
-// 3. Modifica el tiempo en el que varíen los colores y, cada vez que consiga
-// cinco puntos se incremente la velocidad y cuando disminuya la puntuación,
-// también disminuya la velocidad.
+// 2. Inserta un color nuevo a las posibilidades de los colores que se
+// presentan en pantalla.
+// 3. Modifica el tiempo en el que varíen los colores y, cada vez que
+// consiga cinco puntos se incremente la velocidad y cuando disminuya
+// la puntuación, también disminuya la velocidad.
 // 4. Cada vez que se produzca un acierto haz alguna animación.
-// 5. Este programa tiene un error: cuando coincide el color del container y el
-// nombre del color, cada pulsación te lo va a contar como acierto, pudiendo
-// sumar más de un punto cada vez que se pulsa aunque solo haya habido una
-// coincidencia. Busca una solución a este error.
+// 5. Este programa tiene un error: cuando coincide el color del container
+// y el nombre del color, cada pulsación te lo va a contar como acierto,
+// pudiendo sumar más de un punto cada vez que se pulsa aunque solo haya
+// habido una coincidencia. Busca una solución a este error.
 
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -45,11 +45,29 @@ class _RandomColors extends State<RandomColors> {
     timer();
   }
 
+  int tiempo = 2000;
+  late Timer _timer;
   void timer() {
-    Timer.periodic(const Duration(milliseconds: 1500), (timer) {
+    _timer = Timer.periodic(Duration(milliseconds: tiempo), (timer) {
       getRandomColor();
       getRandomName();
       setState(() {});
+    });
+  }
+
+  double _fontSize = 30.0;
+
+  void _increaseFontSize() {
+    setState(() {
+      _fontSize += 2.0;
+    });
+  }
+
+  void _decreaseFontSize() {
+    setState(() {
+      if (_fontSize > 20) {
+        _fontSize -= 1.0;
+      }
     });
   }
 
@@ -57,6 +75,9 @@ class _RandomColors extends State<RandomColors> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -73,7 +94,8 @@ class _RandomColors extends State<RandomColors> {
             ),
             Text(
               'Puntos: $points',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: _fontSize),
             ),
             Center(
               child: GestureDetector(
@@ -130,17 +152,31 @@ class _RandomColors extends State<RandomColors> {
     } else if (hexColor == const Color(0xFF000000)) {
       return 'negro';
     } else {
-      return 'amarillo';
+      return 'nada';
     }
   }
 
   void onGiftTap(String name, Color color) {
     var colorToString = hexToStringConverter(color);
     if (name == colorToString) {
+      _increaseFontSize();
       points++;
     } else {
+      _decreaseFontSize();
       points--;
     }
+    int variable = (points / 5).truncate();
+    tiempo = (2000 - (999 * variable));
+    _timer.cancel();
+    getRandomColor();
+    getRandomName();
     setState(() {});
+    timer();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 }

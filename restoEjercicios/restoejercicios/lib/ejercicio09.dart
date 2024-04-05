@@ -6,9 +6,15 @@
 
 import 'package:flutter/material.dart';
 
-class Botonera extends StatelessWidget {
+class Botonera extends StatefulWidget {
   const Botonera({super.key});
 
+  @override
+  State<Botonera> createState() => _nameState();
+}
+
+// ignore: camel_case_types
+class _nameState extends State<Botonera> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +72,7 @@ class Botonera extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   FloatingActionButton.small(
+                    heroTag: "btn1",
                     onPressed: () {},
                     child: const Icon(Icons.add),
                   ),
@@ -79,9 +86,8 @@ class Botonera extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   FloatingActionButton.large(
-                    onPressed: () {
-                      // Add your onPressed code here!
-                    },
+                    heroTag: "btn2",
+                    onPressed: () {},
                     child: const Icon(Icons.edit_outlined),
                   ),
                 ],

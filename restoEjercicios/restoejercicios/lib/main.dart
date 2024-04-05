@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ScreenThree()),
+                  MaterialPageRoute(builder: (context) => const Formulario()),
                 );
               },
             ),
@@ -86,7 +86,8 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ScreenFour()),
+                  MaterialPageRoute(
+                      builder: (context) => const AdivinaNumero()),
                 );
               },
             ),
